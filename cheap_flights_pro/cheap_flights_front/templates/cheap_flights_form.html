@@ -2,18 +2,111 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>a</title>
+    <title>Szukacz tanich lotów</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-form do szukania tanich lotów
-<form method="POST">
-    {% csrf_token %}
-    First name:<br>
-    <input type="text" name="firstname" value="Mickey"><br>
-    Last name:<br>
-    <input type="text" name="lastname" value="Mouse"><br><br>
-    <input type="submit" value="Submit">
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            Miasto wylotu:
+            <select name="miast_wylotu" disabled>
+                <option value="WAW">Warszawa</option>
+            </select>
+        </div>
+        <div class="form-group">
+            Docelowe miast:
+            <select name="docelowe_miasto" disabled>
+                <option value="ALL">Wszystkie</option>
+            </select>
+        </div>
 
-</form>
+        <div class="row">
+            Zakres możliwej daty wylotu:
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                od:
+            </div>
+            <div class="col-md-3">
+                <div class='input-group date datepicker'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+		                        <span class="glyphicon glyphicon-calendar"></span>
+		                    </span>
+
+                </div>
+            </div>
+            <div class="col-md-1">
+                do:
+            </div>
+            <div class="col-md-3">
+                <div class='input-group date datepicker'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+		                        <span class="glyphicon glyphicon-calendar"></span>
+		                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            Zakres możliwej daty powrotu:
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                od:
+            </div>
+            <div class="col-md-3">
+                <div class='input-group date datepicker'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+		                        <span class="glyphicon glyphicon-calendar"></span>
+		                    </span>
+
+                </div>
+            </div>
+            <div class="col-md-1">
+                do:
+            </div>
+            <div class="col-md-3">
+                <div class='input-group date datepicker'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+		                        <span class="glyphicon glyphicon-calendar"></span>
+		                    </span>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+
+</div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+<script >
+    $(function () {
+        $('.datepicker').datepicker({
+            format: "dd/mm/yyyy",
+            autoclose: true,
+            todayHighlight: true,
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            autoclose: true,
+            changeMonth: true,
+            changeYear: true,
+            orientation: "button"
+        });
+    });
+</script>
 </body>
 </html>

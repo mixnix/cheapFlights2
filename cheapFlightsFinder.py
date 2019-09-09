@@ -58,7 +58,7 @@ def get_flights(departure_from_date, departure_to_date, target_from_date, target
                 flights_table['returnFlights'] += json.loads(r.content)['returnFlights']
                 break
             except Exception as e:
-                print(e)
+                print(r.content)
                 continue
     return flights_table
 
@@ -85,7 +85,7 @@ def get_cheap_flights_for_given_city(departureFromDate="2019-09-06", departureTo
                          'TFS', 'GOT', 'MMX', 'NYO', 'BSL', 'IEV', 'KBP', 'BHX', 'DSA', 'EDI', 'LPL', 'LTN']
     # possibleLocations = ['VIE']
 
-    all_flights = all_flights_for_given_city(possibleLocations, departure_from_date="2019-09-08", departure_to_date="2019-12-30",
+    all_flights = all_flights_for_given_city(possibleLocations, departure_from_date="2019-09-09", departure_to_date="2019-12-30",
                                              target_from_date="2019-09-10", target_to_date="2020-01-07",
                                              from_city="WAW", adult_count=1)
 
