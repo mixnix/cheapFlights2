@@ -6,6 +6,9 @@
 </head>
 <body>
 rezultaty wyszukiwania
+{% for cheap_flight in cheap_flights_short %}
+    <div>{{ cheap_flight.0 }} <<>> {{ cheap_flight.1 }}</div>
+{% endfor %}
 
 </body>
 </html>

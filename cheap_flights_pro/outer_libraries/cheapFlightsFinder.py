@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 import json
-import wizzairApiWrapper
+from outer_libraries import wizzairApiWrapper
 
 
 def get_30_days_periods(departure_from_date, departure_to_date, returning_from_date, returning_to_date):
@@ -79,10 +79,11 @@ def all_flights_for_given_city(all_possible_target_cities, departure_from_date,
 # filtrujej ze wszystkich lotow tylko te najtansze
 def get_cheap_flights_for_given_city(departureFromDate="2019-09-06", departureToDate="2019-10-06", targetFromDate="2019-09-30", targetToDate="2019-11-03",
                       sourceLocation="WAW", adultCount = 1):
-    possibleLocations = ['VIE', 'CRL', 'BOJ', 'SPU', 'LCA', 'BLL', 'TKU', 'BOD', 'GNB', 'LYS', 'NCE', 'KUT', 'CFU',
-                         'BUD', 'KEF', 'ETM', 'TLV', 'AHO', 'BRI', 'BLQ', 'CTA', 'SUF', 'BGY', 'NAP', 'FCO', 'TRN',
-                         'VRN', 'MLA', 'TGD', 'RAK', 'EIN', 'BGO', 'TRF', 'LIS', 'OPO', 'OTP', 'ALC', 'BCN', 'MAD',
-                         'TFS', 'GOT', 'MMX', 'NYO', 'BSL', 'IEV', 'KBP', 'BHX', 'DSA', 'EDI', 'LPL', 'LTN']
+    # possibleLocations = ['VIE', 'CRL', 'BOJ', 'SPU', 'LCA', 'BLL', 'TKU', 'BOD', 'GNB', 'LYS', 'NCE', 'KUT', 'CFU',
+    #                      'BUD', 'KEF', 'ETM', 'TLV', 'AHO', 'BRI', 'BLQ', 'CTA', 'SUF', 'BGY', 'NAP', 'FCO', 'TRN',
+    #                      'VRN', 'MLA', 'TGD', 'RAK', 'EIN', 'BGO', 'TRF', 'LIS', 'OPO', 'OTP', 'ALC', 'BCN', 'MAD',
+    #                      'TFS', 'GOT', 'MMX', 'NYO', 'BSL', 'IEV', 'KBP', 'BHX', 'DSA', 'EDI', 'LPL', 'LTN']
+    possibleLocations = ['VIE', 'CRL']
     # possibleLocations = ['VIE']
 
     all_flights = all_flights_for_given_city(possibleLocations, departure_from_date="2019-09-09", departure_to_date="2019-12-30",
@@ -107,11 +108,9 @@ def get_cheap_flights_for_given_city(departureFromDate="2019-09-06", departureTo
                 temp_cheapest_return = flight
 
         cheap_flights[key] = (temp_cheapest_outbound, temp_cheapest_return)
-    return cheap_flights
+    cheap_flights_short = [(key, flight[0]['price']['amount'] + flight[1]['price']['amount']) for key, flight in
+                           cheap_flights.items()]
+    cheap_flights_short_sorted = sorted(cheap_flights_short, key=lambda x: x[1])
+    return cheap_flights, cheap_flights_short_sorted
 
-
-cheap_flights = get_cheap_flights_for_given_city()
-cheap_flights_short = [(key, flight[0]['price']['amount'] + flight[1]['price']['amount']) for key, flight in cheap_flights.items()]
-cheap_flights_short_sorted = sorted(cheap_flights_short, key=lambda x: x[1])
-print("done")
 

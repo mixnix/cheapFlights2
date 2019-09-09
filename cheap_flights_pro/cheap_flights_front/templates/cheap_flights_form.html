@@ -10,17 +10,17 @@
 </head>
 <body>
 <div class="container">
-    <form method="POST">
+    <form action="/"  method="POST">
         {% csrf_token %}
         <div class="form-group">
             Miasto wylotu:
-            <select name="miast_wylotu" disabled>
+            <select name="miasto_wylotu">
                 <option value="WAW">Warszawa</option>
             </select>
         </div>
         <div class="form-group">
             Docelowe miast:
-            <select name="docelowe_miasto" disabled>
+            <select name="docelowe_miasto">
                 <option value="ALL">Wszystkie</option>
             </select>
         </div>
@@ -34,7 +34,7 @@
             </div>
             <div class="col-md-3">
                 <div class='input-group date datepicker'>
-                    <input type='text' class="form-control" />
+                    <input name="data_wylotu_od" type='text' class="form-control" />
                     <span class="input-group-addon">
 		                        <span class="glyphicon glyphicon-calendar"></span>
 		                    </span>
@@ -46,7 +46,7 @@
             </div>
             <div class="col-md-3">
                 <div class='input-group date datepicker'>
-                    <input type='text' class="form-control" />
+                    <input name="data_wylotu_do" type='text' class="form-control" />
                     <span class="input-group-addon">
 		                        <span class="glyphicon glyphicon-calendar"></span>
 		                    </span>
@@ -62,7 +62,7 @@
             </div>
             <div class="col-md-3">
                 <div class='input-group date datepicker'>
-                    <input type='text' class="form-control" />
+                    <input name="data_powrotu_od" type='text' class="form-control" />
                     <span class="input-group-addon">
 		                        <span class="glyphicon glyphicon-calendar"></span>
 		                    </span>
@@ -74,17 +74,13 @@
             </div>
             <div class="col-md-3">
                 <div class='input-group date datepicker'>
-                    <input type='text' class="form-control" />
+                    <input name="data_powrotu_do" type='text' class="form-control" />
                     <span class="input-group-addon">
 		                        <span class="glyphicon glyphicon-calendar"></span>
 		                    </span>
                 </div>
             </div>
         </div>
-
-
-
-
 
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Submit</button>
