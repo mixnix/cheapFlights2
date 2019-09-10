@@ -1,12 +1,7 @@
-from django.views.generic import TemplateView
 from django.template import loader
 from django.http import HttpResponse
 
-from .forms import CreateReviewForm
 from outer_libraries.cheapFlightsFinder import get_cheap_flights_for_given_city
-
-class CheapFlightsForm(TemplateView):
-    template_name = "cheap_flights_form.html"
 
 
 def CheapFlightsSearch(request):

@@ -77,8 +77,8 @@ def all_flights_for_given_city(all_possible_target_cities, departure_from_date,
 
 
 # filtrujej ze wszystkich lotow tylko te najtansze
-def get_cheap_flights_for_given_city(departureFromDate="2019-09-06", departureToDate="2019-10-06", targetFromDate="2019-09-30", targetToDate="2019-11-03",
-                      sourceLocation="WAW", adultCount = 1):
+def get_cheap_flights_for_given_city(departureFromDate="2019-09-10", departureToDate="2019-10-06", targetFromDate="2019-09-30", targetToDate="2019-11-03",
+                                     from_city="WAW", adultCount = 1):
     # possibleLocations = ['VIE', 'CRL', 'BOJ', 'SPU', 'LCA', 'BLL', 'TKU', 'BOD', 'GNB', 'LYS', 'NCE', 'KUT', 'CFU',
     #                      'BUD', 'KEF', 'ETM', 'TLV', 'AHO', 'BRI', 'BLQ', 'CTA', 'SUF', 'BGY', 'NAP', 'FCO', 'TRN',
     #                      'VRN', 'MLA', 'TGD', 'RAK', 'EIN', 'BGO', 'TRF', 'LIS', 'OPO', 'OTP', 'ALC', 'BCN', 'MAD',
@@ -86,9 +86,9 @@ def get_cheap_flights_for_given_city(departureFromDate="2019-09-06", departureTo
     possibleLocations = ['VIE', 'CRL']
     # possibleLocations = ['VIE']
 
-    all_flights = all_flights_for_given_city(possibleLocations, departure_from_date="2019-09-09", departure_to_date="2019-12-30",
-                                             target_from_date="2019-09-10", target_to_date="2020-01-07",
-                                             from_city="WAW", adult_count=1)
+    all_flights = all_flights_for_given_city(possibleLocations, departure_from_date=departureFromDate, departure_to_date=departureToDate,
+                                             target_from_date=targetFromDate, target_to_date=targetToDate,
+                                             from_city=from_city, adult_count=adultCount)
 
     cheap_flights = {}
     for key, flights_to_city in all_flights.items():
@@ -112,5 +112,3 @@ def get_cheap_flights_for_given_city(departureFromDate="2019-09-06", departureTo
                            cheap_flights.items()]
     cheap_flights_short_sorted = sorted(cheap_flights_short, key=lambda x: x[1])
     return cheap_flights, cheap_flights_short_sorted
-
-

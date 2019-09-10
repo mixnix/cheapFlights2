@@ -5,10 +5,12 @@
     <title>Title</title>
 </head>
 <body>
-rezultaty wyszukiwania
-{% for cheap_flight in cheap_flights_short %}
-    <div>{{ cheap_flight.0 }} <<>> {{ cheap_flight.1 }}</div>
+<div class="container">
+    rezultaty wyszukiwania
+    {% for cheap_flight in cheap_flights_short %}
+        <div>{{ cheap_flight.0 }} <<>> {{ cheap_flight.1 }} zł</div>
 {% endfor %}
+</div>
 
 </body>
 </html>
