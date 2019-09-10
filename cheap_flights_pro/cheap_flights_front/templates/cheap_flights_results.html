@@ -1,16 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<div class="container">
-    rezultaty wyszukiwania
-    {% for cheap_flight in cheap_flights_short %}
-        <div>{{ cheap_flight.0 }} <<>> {{ cheap_flight.1 }} zł</div>
-{% endfor %}
-</div>
+{% extends 'base.html' %}
 
-</body>
-</html>
+
+
+
+{% block content %}
+    <div class="container py-4">
+        <h1>Rezulaty wyszukiwania</h1>
+        {% for cheap_flight in cheap_flights_short %}
+            <div class="row py-1">
+                <div class="col-md-2">
+                    {{ cheap_flight.0 }}
+                </div>
+                <div class="col-md-1">
+                    {{ cheap_flight.1 }} zł
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}
