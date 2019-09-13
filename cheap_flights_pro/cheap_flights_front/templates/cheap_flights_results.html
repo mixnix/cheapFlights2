@@ -17,4 +17,36 @@
             </div>
         {% endfor %}
     </div>
+    <textarea id="chat-log" cols="100" rows="20"></textarea><br/>
 {% endblock content %}
+
+
+
+
+{% block additional_js %}
+    <script>
+        var chatSocket = new WebSocket(
+            'ws://' + window.location.host +
+            '/ws/getCheapFlights/');
+
+        chatSocket.onmessage = function(e) {
+            var data = JSON.parse(e.data);
+            var message = data['cheap_flights'];
+            message.forEach((e) => {
+                document.querySelector('#chat-log').value += (e[0] + '<<>>' + e[1] + 'zł' + '\n');
+            });
+        };
+
+        chatSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
+        };
+
+        setTimeout(function () {
+            chatSocket.send(JSON.stringify({
+                'message': 'asd'
+            }));
+        }, 1000);
+
+
+    </script>
+{% endblock additional_js %}
